@@ -14,7 +14,7 @@ let iplist=[]
 async function checkIP(ip) {
     try {
         const url = `http://${ip}:${port}`;
-        let response = await limitConcurrentRequests(url, { validateStatus: status => status === expectedStatusCode, timeout: 3000 });
+        let response = await limitConcurrentRequests(url, { validateStatus: status => status === expectedStatusCode,timeout:9999});
 		
         if (response.status === expectedStatusCode) {
 		const dom = new JSDOM(response.data);
@@ -35,8 +35,7 @@ async function checkIP(ip) {
         }
 		
     } catch (error) {
-			console.error(`无法连接到 ${ip}:${port}`);
-		
+			//console.error(`无法连接到 ${ip}:${port}`);
         
     }
 }
